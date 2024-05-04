@@ -103,6 +103,17 @@ const llenarDatosCitaObj = (e) => {
   citaObj[e.target.name] = e.target.value.trim();
 };
 
+// Reiniciar el objeto de la cita
+const reiniciarCitaObj = () => {
+  Object.assign(citaObj, {
+    paciente: '',
+    propietario: '',
+    email: '',
+    fecha: '',
+    sintomas: ''
+  });
+};
+
 
 // Inica la app
 const init = (event) => {
@@ -120,6 +131,11 @@ const init = (event) => {
   // Muestra notificacion de exito
   notificacion.mostrarNotificacion('Cita creada correctamente');
 
+  // Reiniciar el objeto de la cita
+  reiniciarCitaObj();
+
+  // Reiniciar el formulario
+  formulario.reset();
 };
 
 // Cargar eventos
