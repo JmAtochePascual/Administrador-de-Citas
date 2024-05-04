@@ -65,6 +65,11 @@ class Cita {
       contenedorCitas.removeChild(contenedorCitas.firstChild);
     }
 
+    if (this.citas.length === 0) {
+      contenedorCitas.innerHTML = '<p class="text-xl mt-5 mb-10 text-center">No hay Pacientes</p>';
+      return;
+    }
+
     this.citas.forEach(cita => {
       const divCita = document.createElement('div');
       divCita.classList.add('mx-5', 'my-10', 'bg-white', 'shadow-md', 'px-5', 'py-10', 'rounded-xl', 'p-3');
