@@ -15,6 +15,8 @@ const citaObj = {
   sintomas: ''
 };
 
+let editar = false;
+
 //  Clase de notificaciones
 class Notificacion {
   constructor() {
@@ -49,6 +51,8 @@ class Cita {
   }
 
   agregarCita(cita) {
+    cita.id = Date.now() + Math.random().toString(36).substring(2);
+
     this.citas = [...this.citas, cita];
     this.mostrarCita();
   }
@@ -83,15 +87,38 @@ class Cita {
       sintomas.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
       sintomas.innerHTML = `<span class="font-bold uppercase">Síntomas: </span> ${cita.sintomas}`;
 
+      const btnEditar = document.createElement('button');
+      btnEditar.classList.add('py-2', 'px-10', 'bg-indigo-600', 'hover:bg-indigo-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
+      btnEditar.innerHTML = 'Editar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>';
+      btnEditar.onclick = () => editarCita(cita);
+
+      const btnEliminar = document.createElement('button');
+      btnEliminar.classList.add('py-2', 'px-10', 'bg-red-600', 'hover:bg-red-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
+      btnEliminar.innerHTML = 'Eliminar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+
+      const contenedorBotoes = document.createElement('div');
+      contenedorBotoes.classList.add('flex', 'justify-between', 'mt-10');
+
+      contenedorBotoes.appendChild(btnEditar);
+      contenedorBotoes.appendChild(btnEliminar);
+
       // Agregar al HTML
       divCita.appendChild(paciente);
       divCita.appendChild(propietario);
       divCita.appendChild(email);
       divCita.appendChild(fecha);
       divCita.appendChild(sintomas);
+      divCita.appendChild(contenedorBotoes);
+
       contenedorCitas.appendChild(divCita);
     });
   }
+
+  editarCita(cita) {
+    this.citas = this.citas.map(citaItem => citaItem.id === cita.id ? cita : citaItem);
+    this.mostrarCita();
+  }
+
 }
 
 
@@ -114,6 +141,20 @@ const reiniciarCitaObj = () => {
   });
 };
 
+// Editar cita
+const editarCita = (citaMemory) => {
+  paciente.value = citaMemory.paciente;
+  propietario.value = citaMemory.propietario;
+  email.value = citaMemory.email;
+  fecha.value = citaMemory.fecha;
+  sintomas.value = citaMemory.sintomas;
+  citaObj.id = citaMemory.id;
+
+  Object.assign(citaObj, citaMemory);
+  editar = true;
+
+  formulario.querySelector('input[type="submit"]').value = 'Guardar Cambios';
+}
 
 // Inica la app
 const init = (event) => {
@@ -125,11 +166,26 @@ const init = (event) => {
     return;
   };
 
-  // Agrega la cita al arreglo de citas
-  cita.agregarCita({ ...citaObj });
 
-  // Muestra notificacion de exito
-  notificacion.mostrarNotificacion('Cita creada correctamente');
+  if (editar) {
+
+    cita.editarCita({ ...citaObj });
+
+    // Muestra notificacion de exito
+    notificacion.mostrarNotificacion('Cita actualizada correctamente');
+
+    // Cambiar el texto del boton
+    formulario.querySelector('input[type="submit"]').value = 'Registrar Paciente';
+
+    // Cambiar el modo de edicion
+    editar = false;
+  } else {
+    // Agrega la cita al arreglo de citas
+    cita.agregarCita({ ...citaObj });
+
+    // Muestra notificacion de exito
+    notificacion.mostrarNotificacion('Cita creada correctamente');
+  }
 
   // Reiniciar el objeto de la cita
   reiniciarCitaObj();
