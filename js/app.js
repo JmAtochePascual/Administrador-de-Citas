@@ -14,22 +14,20 @@ const citaObj = {
   sintomas: ''
 };
 
-//  Clases
+//  Clase de notificaciones
 class Notificacion {
-  constructor({ mensaje, tipo = true }) {
-    this.mensaje = mensaje;
-    this.tipo = tipo;
+  constructor() {
   }
 
-  mostrarNotificacion() {
+  mostrarNotificacion(mensaje, tipo = true) {
     const existeAlerta = document.querySelector('.alert');
 
     if (!existeAlerta) {
       const alerta = document.createElement('div');
-      alerta.textContent = this.mensaje;
+      alerta.textContent = mensaje;
       alerta.classList.add('text-center', 'w-full', 'p-3', 'text-white', 'my-5', 'uppercase', 'font-bold', 'text-sm', 'alert');
 
-      this.tipo
+      tipo
         ? alerta.classList.add('bg-green-500')
         : alerta.classList.add('bg-red-500');
 
@@ -42,8 +40,22 @@ class Notificacion {
   }
 }
 
-let notificacion;
+// Clase de citas
+class Cita {
 
+  constructor() {
+    this.citas = [];
+  }
+
+  agregarCita(cita) {
+    this.citas = [...this.citas, cita];
+    console.log(this.citas);
+  }
+}
+
+
+let notificacion = new Notificacion();;
+const cita = new Cita();
 
 // Llenar datos de la cita
 const llenarDatosCitaObj = (e) => {
@@ -55,11 +67,17 @@ const llenarDatosCitaObj = (e) => {
 const init = (event) => {
   event.preventDefault();
 
+  // Valida si hay campos vacios
   if (Object.values(citaObj).includes('')) {
-    notificacion = new Notificacion({ mensaje: 'Todos los campos son obligatorios', tipo: false });
-    notificacion.mostrarNotificacion();
+    notificacion.mostrarNotificacion('Todos los campos son obligatorios', false);
     return;
   };
+
+  // Agrega la cita al arreglo de citas
+  cita.agregarCita({ ...citaObj });
+
+  // Muestra notificacion de exito
+  notificacion.mostrarNotificacion('Cita creada correctamente');
 
 };
 
