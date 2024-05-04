@@ -50,6 +50,7 @@ class Cita {
     this.citas = [];
   }
 
+  // Agregar cita al arreglo de citas
   agregarCita(cita) {
     cita.id = Date.now() + Math.random().toString(36).substring(2);
 
@@ -57,6 +58,7 @@ class Cita {
     this.mostrarCita();
   }
 
+  // Mostrar citas en el HTML
   mostrarCita() {
     // Limpiar el html previo
     while (contenedorCitas.firstChild) {
@@ -95,6 +97,7 @@ class Cita {
       const btnEliminar = document.createElement('button');
       btnEliminar.classList.add('py-2', 'px-10', 'bg-red-600', 'hover:bg-red-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
       btnEliminar.innerHTML = 'Eliminar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+      btnEliminar.onclick = () => eliminarCita(cita.id);
 
       const contenedorBotoes = document.createElement('div');
       contenedorBotoes.classList.add('flex', 'justify-between', 'mt-10');
@@ -114,8 +117,15 @@ class Cita {
     });
   }
 
+  // Editar cita del arreglo de citas
   editarCita(cita) {
     this.citas = this.citas.map(citaItem => citaItem.id === cita.id ? cita : citaItem);
+    this.mostrarCita();
+  }
+
+  // Eliminar cita del arreglo de citas
+  eliminarCita(id) {
+    this.citas = this.citas.filter(cita => cita.id !== id);
     this.mostrarCita();
   }
 
@@ -125,10 +135,12 @@ class Cita {
 let notificacion = new Notificacion();;
 const cita = new Cita();
 
+
 // Llenar datos de la cita
 const llenarDatosCitaObj = (e) => {
   citaObj[e.target.name] = e.target.value.trim();
 };
+
 
 // Reiniciar el objeto de la cita
 const reiniciarCitaObj = () => {
@@ -140,6 +152,7 @@ const reiniciarCitaObj = () => {
     sintomas: ''
   });
 };
+
 
 // Editar cita
 const editarCita = (citaMemory) => {
@@ -156,6 +169,13 @@ const editarCita = (citaMemory) => {
   formulario.querySelector('input[type="submit"]').value = 'Guardar Cambios';
 }
 
+
+// Eliminar cita
+const eliminarCita = (id) => {
+  cita.eliminarCita(id);
+}
+
+
 // Inica la app
 const init = (event) => {
   event.preventDefault();
@@ -165,7 +185,6 @@ const init = (event) => {
     notificacion.mostrarNotificacion('Todos los campos son obligatorios', false);
     return;
   };
-
 
   if (editar) {
 
