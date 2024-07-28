@@ -46,6 +46,15 @@ const validarEmail = () => {
 // Generar un id 
 const generarId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
 
+// Reiniciar objeto paciente
+const reiniciarObjPaciente = () => {
+  pacienteObj.paciente = '';
+  pacienteObj.propietario = '';
+  pacienteObj.email = '';
+  pacienteObj.fecha = '';
+  pacienteObj.sintomas = '';
+}
+
 
 export {
   llenarDatosObjCita,
@@ -53,5 +62,6 @@ export {
   mostrarAlerta,
   validarEmail,
   generarId,
+  reiniciarObjPaciente,
   pacienteObj
 }
