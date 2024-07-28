@@ -1,8 +1,10 @@
 // Importar modulos
 import Cita from "./Cita.js";
+import Citas from "./Citas.js";
 import { citaObj, llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita } from "./funciones.js";
 import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml, sintomasInputHtml, formularioHtml } from "./selectores.js";
 
+const citas = new Citas();
 
 // Funcion que inicia la aplicacion
 const init = (event) => {
@@ -25,6 +27,11 @@ const init = (event) => {
 
   // Crear cita
   const cita = new Cita(citaObj);
+
+  // Agregar cita
+  citas.agregarCita(cita);
+
+  console.log(citas);
 
   // Mostrar alerta de exito
   mostrarAlerta('Cita creada correctamente', true);
