@@ -7,7 +7,7 @@ class Pacientes {
 
   // Agregar cita
   agregarPaciente(paciente) {
-    this.pacientes = [...this.citas, paciente];
+    this.pacientes = [...this.pacientes, paciente];
   }
 };
 

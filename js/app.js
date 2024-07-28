@@ -25,16 +25,19 @@ const init = (event) => {
     return;
   }
 
-  // Crear cita
+  // Crear paciente
   const paciente = new Paciente(pacienteObj);
 
-  // Agregar cita
+  // Agregar paciente
   pacientes.agregarPaciente(paciente);
 
-  console.log(pacientes);
-
   // Mostrar alerta de exito
-  mostrarAlerta('Cita creada correctamente', true);
+  mostrarAlerta('Paciente creado correctamente', true);
+
+  // Reiniciar formulario
+  formularioHtml.reset();
+
+  console.log(pacientes);
 }
 
 
