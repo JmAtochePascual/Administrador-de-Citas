@@ -1,5 +1,6 @@
 // Importar modulos
-import { llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita } from "./funciones.js";
+import Cita from "./Cita.js";
+import { citaObj, llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita } from "./funciones.js";
 import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml, sintomasInputHtml, formularioHtml } from "./selectores.js";
 
 
@@ -21,6 +22,11 @@ const init = (event) => {
     mostrarAlerta('Email no valido', false);
     return;
   }
+
+  // Crear cita
+  const cita = new Cita(citaObj);
+
+  console.log(cita);
 
   // Mostrar alerta de exito
   mostrarAlerta('Cita creada correctamente', true);

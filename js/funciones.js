@@ -48,5 +48,6 @@ export {
   llenarDatosObjCita,
   verificarDatosObjCita,
   mostrarAlerta,
-  validarEmail
+  validarEmail,
+  citaObj
 }
