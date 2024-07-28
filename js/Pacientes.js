@@ -14,6 +14,11 @@ class Pacientes {
   eliminarPaciente(id) {
     this.pacientes = this.pacientes.filter(paciente => paciente.id !== id);
   }
+
+  // Obtener paciente
+  obtenerPaciente(id) {
+    return this.pacientes.find(paciente => paciente.id === id);
+  }
 };
 
 export default Pacientes;
