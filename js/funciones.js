@@ -99,16 +99,19 @@ const listarPacientes = () => {
     // btnEditar.innerHTML = 'Editar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>';
     // btnEditar.onclick = () => editarCita(cita);
 
-    // const btnEliminar = document.createElement('button');
-    // btnEliminar.classList.add('py-2', 'px-10', 'bg-red-600', 'hover:bg-red-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
-    // btnEliminar.innerHTML = 'Eliminar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
-    // btnEliminar.onclick = () => eliminarCita(cita.id);
+    const btnEliminar = document.createElement('button');
+    btnEliminar.classList.add('py-2', 'px-10', 'bg-red-600', 'hover:bg-red-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
+    btnEliminar.innerHTML = 'Eliminar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+    btnEliminar.onclick = () => {
+      pacientes.eliminarPaciente(id);
+      listarPacientes();
+    };
 
-    // const contenedorBotoes = document.createElement('div');
-    // contenedorBotoes.classList.add('flex', 'justify-between', 'mt-10');
+    const contenedorBotoes = document.createElement('div');
+    contenedorBotoes.classList.add('flex', 'justify-between', 'mt-10');
 
     // contenedorBotoes.appendChild(btnEditar);
-    // contenedorBotoes.appendChild(btnEliminar);
+    contenedorBotoes.appendChild(btnEliminar);
 
     // Agregar al HTML
     divCita.appendChild(pacienteHtml);
@@ -116,7 +119,7 @@ const listarPacientes = () => {
     divCita.appendChild(emailHtml);
     divCita.appendChild(fechaHtml);
     divCita.appendChild(sintomasHtml);
-    // divCita.appendChild(contenedorBotoes);
+    divCita.appendChild(contenedorBotoes);
 
     contenedorCitasHtml.appendChild(divCita);
   });
