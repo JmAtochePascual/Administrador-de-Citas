@@ -1,5 +1,5 @@
 // Importar modulos
-import { llenarDatosObjCita, mostrarAlerta, verificarDatosObjCita } from "./funciones.js";
+import { llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita } from "./funciones.js";
 import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml, sintomasInputHtml, formularioHtml } from "./selectores.js";
 
 
@@ -13,6 +13,12 @@ const init = (event) => {
   // Validar formulario, si no esta completo, mostrar alerta
   if (!esFormularioValido) {
     mostrarAlerta('Todos los campos son obligatorios', false);
+    return;
+  }
+
+  // Validar email
+  if (!validarEmail()) {
+    mostrarAlerta('Email no valido', false);
     return;
   }
 

@@ -38,8 +38,15 @@ const mostrarAlerta = (mensaje, tipo) => {
   }, 3000);
 }
 
+// Validar email
+const validarEmail = () => {
+  const expresion = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return expresion.test(citaObj.email);
+}
+
 export {
   llenarDatosObjCita,
   verificarDatosObjCita,
-  mostrarAlerta
+  mostrarAlerta,
+  validarEmail
 }
