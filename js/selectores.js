@@ -1,8 +1,16 @@
-export const paciente = document.querySelector('#paciente');
-export const propietario = document.querySelector('#propietario');
-export const email = document.querySelector('#email');
-export const fecha = document.querySelector('#fecha');
-export const sintomas = document.querySelector('#sintomas');
-export const formulario = document.querySelector('#formulario-cita');
-export const contenedorCitas = document.querySelector('#citas');
+const pacienteInputHtml = document.querySelector('#paciente');
+const propietarioInputHtml = document.querySelector('#propietario');
+const emailInputHtml = document.querySelector('#email');
+const fechaInputHtml = document.querySelector('#fecha');
+const sintomasInputHtml = document.querySelector('#sintomas');
+const formularioHtml = document.querySelector('#formulario-cita');
 
+
+export {
+  pacienteInputHtml,
+  propietarioInputHtml,
+  emailInputHtml,
+  fechaInputHtml,
+  sintomasInputHtml,
+  formularioHtml
+}
