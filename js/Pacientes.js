@@ -15,9 +15,9 @@ class Pacientes {
     this.pacientes = this.pacientes.filter(paciente => paciente.id !== id);
   }
 
-  // Obtener paciente
-  obtenerPaciente(id) {
-    return this.pacientes.find(paciente => paciente.id === id);
+  // Editar paciente
+  editarPaciente(pacienteActualizado) {
+    this.pacientes = this.pacientes.map(paciente => paciente.id === pacienteActualizado.id ? pacienteActualizado : paciente);
   }
 };
 

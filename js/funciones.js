@@ -131,22 +131,16 @@ const listarPacientes = () => {
 
 // Llenar formulario para edicion
 const llenarFormulario = (objetoPaciente) => {
-  const { paciente, propietario, email, fecha, sintomas, id } = objetoPaciente;
 
-  // Llenar objeto paciente
-  pacienteObj.paciente = paciente;
-  pacienteObj.propietario = propietario;
-  pacienteObj.email = email;
-  pacienteObj.fecha = fecha;
-  pacienteObj.sintomas = sintomas;
-  pacienteObj.id = id;
+  // Llenar pacienteObj
+  Object.assign(pacienteObj, objetoPaciente);
 
   // Llenar inputs
-  pacienteInputHtml.value = paciente;
-  propietarioInputHtml.value = propietario;
-  emailInputHtml.value = email;
-  fechaInputHtml.value = fecha;
-  sintomasInputHtml.value = sintomas;
+  pacienteInputHtml.value = pacienteObj.paciente;
+  propietarioInputHtml.value = pacienteObj.propietario;
+  emailInputHtml.value = pacienteObj.email;
+  fechaInputHtml.value = pacienteObj.fecha;
+  sintomasInputHtml.value = pacienteObj.sintomas;
 
   formularioHtml.querySelector('input[type="submit"]').value = 'Guardar Cambios';
 }

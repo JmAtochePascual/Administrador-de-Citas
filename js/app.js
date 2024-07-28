@@ -25,14 +25,29 @@ const init = (event) => {
     return;
   }
 
-  // Crear paciente
-  const paciente = new Paciente(pacienteObj);
+  // Validar si es edicion o nuevo paciente
+  if (pacienteObj.id) {
 
-  // Agregar paciente
-  pacientes.agregarPaciente(paciente);
+    // Editar paciente
+    pacientes.editarPaciente(pacienteObj);
 
-  // Mostrar alerta de exito
-  mostrarAlerta('Paciente creado correctamente', true);
+    // Mostrar alerta de exito
+    mostrarAlerta('Paciente actualizado correctamente', true);
+
+    formularioHtml.querySelector('input[type="submit"]').value = 'Registrar paciente';
+
+    listarPacientes();
+
+  } else {
+    // Crear paciente
+    const paciente = new Paciente(pacienteObj);
+
+    // Agregar paciente
+    pacientes.agregarPaciente(paciente);
+
+    // Mostrar alerta de exito
+    mostrarAlerta('Paciente creado correctamente', true);
+  }
 
   // Listar pacientes
   listarPacientes();
