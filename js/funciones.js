@@ -44,10 +44,15 @@ const validarEmail = () => {
   return expresion.test(citaObj.email);
 }
 
+// Generar un id 
+const generarId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
+
+
 export {
   llenarDatosObjCita,
   verificarDatosObjCita,
   mostrarAlerta,
   validarEmail,
+  generarId,
   citaObj
 }

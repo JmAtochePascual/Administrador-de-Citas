@@ -26,8 +26,6 @@ const init = (event) => {
   // Crear cita
   const cita = new Cita(citaObj);
 
-  console.log(cita);
-
   // Mostrar alerta de exito
   mostrarAlerta('Cita creada correctamente', true);
 }
