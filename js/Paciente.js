@@ -1,6 +1,6 @@
 import { generarId } from "./funciones.js";
 
-class Cita {
+class Paciente {
 
   // Constructor
   constructor({ paciente, propietario, email, fecha, sintomas }) {
@@ -14,4 +14,4 @@ class Cita {
 
 };
 
-export default Cita;
+export default Paciente;

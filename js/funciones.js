@@ -1,7 +1,7 @@
 import { formularioHtml } from "./selectores.js";
 
 // Variables
-const citaObj = {
+const pacienteObj = {
   paciente: '',
   propietario: '',
   email: '',
@@ -11,11 +11,11 @@ const citaObj = {
 
 // llenar datos al objeto cita
 const llenarDatosObjCita = (event) => {
-  citaObj[event.target.name] = event.target.value.trim();
+  pacienteObj[event.target.name] = event.target.value.trim();
 }
 
 // Verificar datos del objeto cita
-const verificarDatosObjCita = () => Object.values(citaObj).every(valor => valor.trim() !== '');
+const verificarDatosObjCita = () => Object.values(pacienteObj).every(valor => valor.trim() !== '');
 
 // Mostrar alerta
 const mostrarAlerta = (mensaje, tipo) => {
@@ -40,7 +40,7 @@ const mostrarAlerta = (mensaje, tipo) => {
 // Validar email
 const validarEmail = () => {
   const expresion = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return expresion.test(citaObj.email);
+  return expresion.test(pacienteObj.email);
 }
 
 // Generar un id 
@@ -53,5 +53,5 @@ export {
   mostrarAlerta,
   validarEmail,
   generarId,
-  citaObj
+  pacienteObj
 }
