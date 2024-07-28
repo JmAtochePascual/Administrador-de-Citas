@@ -13,6 +13,10 @@ const llenarDatosObjCita = (event) => {
 }
 
 
+// Verificar datos del objeto cita
+const verificarDatosObjCita = () => Object.values(citaObj).every(valor => valor.trim() !== '');
+
 export {
   llenarDatosObjCita,
+  verificarDatosObjCita
 }
