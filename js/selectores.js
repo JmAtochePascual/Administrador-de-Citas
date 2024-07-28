@@ -4,6 +4,7 @@ const emailInputHtml = document.querySelector('#email');
 const fechaInputHtml = document.querySelector('#fecha');
 const sintomasInputHtml = document.querySelector('#sintomas');
 const formularioHtml = document.querySelector('#formulario-cita');
+const contenedorCitasHtml = document.querySelector('#citas');
 
 
 export {
@@ -12,5 +13,6 @@ export {
   emailInputHtml,
   fechaInputHtml,
   sintomasInputHtml,
-  formularioHtml
+  formularioHtml,
+  contenedorCitasHtml
 }

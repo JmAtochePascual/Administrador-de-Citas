@@ -1,7 +1,7 @@
 // Importar modulos
 import Paciente from "./Paciente.js";
 import Pacientes from "./Pacientes.js";
-import { pacienteObj, llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita, reiniciarObjPaciente } from "./funciones.js";
+import { pacienteObj, llenarDatosObjCita, mostrarAlerta, validarEmail, verificarDatosObjCita, reiniciarObjPaciente, listarPacientes } from "./funciones.js";
 import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml, sintomasInputHtml, formularioHtml } from "./selectores.js";
 
 const pacientes = new Pacientes();
@@ -34,6 +34,9 @@ const init = (event) => {
   // Mostrar alerta de exito
   mostrarAlerta('Paciente creado correctamente', true);
 
+  // Listar pacientes
+  listarPacientes();
+
   // Reiniciar objeto paciente
   reiniciarObjPaciente();
 
@@ -51,3 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   sintomasInputHtml.addEventListener('change', llenarDatosObjCita);
   formularioHtml.addEventListener('submit', init);
 });
+
+
+export {
+  pacientes
+}
