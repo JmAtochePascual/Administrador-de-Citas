@@ -2,7 +2,7 @@ import { pacientes } from "./app.js";
 import { contenedorCitasHtml, emailInputHtml, fechaInputHtml, formularioHtml, pacienteInputHtml, propietarioInputHtml, sintomasInputHtml } from "./selectores.js";
 
 // Variables
-const pacienteObj = {
+let pacienteObj = {
   paciente: '',
   propietario: '',
   email: '',
@@ -49,11 +49,13 @@ const generarId = () => Math.random().toString(36).substring(2) + Date.now().toS
 
 // Reiniciar objeto paciente
 const reiniciarObjPaciente = () => {
-  pacienteObj.paciente = '';
-  pacienteObj.propietario = '';
-  pacienteObj.email = '';
-  pacienteObj.fecha = '';
-  pacienteObj.sintomas = '';
+  pacienteObj = {
+    paciente: '',
+    propietario: '',
+    email: '',
+    fecha: '',
+    sintomas: ''
+  };
 }
 
 // Listar pacientes
