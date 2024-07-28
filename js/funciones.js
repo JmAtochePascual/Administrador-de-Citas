@@ -1,3 +1,5 @@
+import { formularioHtml } from "./selectores.js";
+
 // Variables
 const citaObj = {
   paciente: '',
@@ -16,7 +18,28 @@ const llenarDatosObjCita = (event) => {
 // Verificar datos del objeto cita
 const verificarDatosObjCita = () => Object.values(citaObj).every(valor => valor.trim() !== '');
 
+// Mostrar alerta
+const mostrarAlerta = (mensaje, tipo) => {
+
+  // Si hay una alerta previa, no crear otra
+  const alertaPrevia = document.querySelector('.alerta');
+  if (alertaPrevia) return;
+
+  // Crear alerta
+  const alerta = document.createElement('p');
+  alerta.textContent = mensaje;
+  alerta.className = `text-center p-2 text-white font-bold uppercase alerta ${tipo ? 'bg-green-500' : 'bg-red-500'}`;
+
+  // Insertar alerta en el formulario
+  formularioHtml.parentElement.insertBefore(alerta, formularioHtml);
+
+  setTimeout(() => {
+    alerta.remove();
+  }, 3000);
+}
+
 export {
   llenarDatosObjCita,
-  verificarDatosObjCita
+  verificarDatosObjCita,
+  mostrarAlerta
 }

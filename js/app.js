@@ -1,5 +1,5 @@
 // Importar modulos
-import { llenarDatosObjCita, verificarDatosObjCita } from "./funciones.js";
+import { llenarDatosObjCita, mostrarAlerta, verificarDatosObjCita } from "./funciones.js";
 import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml, sintomasInputHtml, formularioHtml } from "./selectores.js";
 
 
@@ -7,9 +7,17 @@ import { emailInputHtml, pacienteInputHtml, propietarioInputHtml, fechaInputHtml
 const init = (event) => {
   event.preventDefault();
 
-  // Verificar si el formulario es valido
+  // Verificar si los campos estan llenos
   const esFormularioValido = verificarDatosObjCita();
 
+  // Validar formulario, si no esta completo, mostrar alerta
+  if (!esFormularioValido) {
+    mostrarAlerta('Todos los campos son obligatorios', false);
+    return;
+  }
+
+  // Mostrar alerta de exito
+  mostrarAlerta('Cita creada correctamente', true);
 }
 
 
