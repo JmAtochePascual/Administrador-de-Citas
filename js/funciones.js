@@ -59,6 +59,9 @@ const reiniciarObjPaciente = () => {
 // Listar pacientes
 const listarPacientes = () => {
 
+  // Limpiar HTML
+  limpiarHTML();
+
   pacientes.pacientes.forEach(objetoPaciente => {
     const { paciente, propietario, email, fecha, sintomas, id } = objetoPaciente;
 
@@ -117,6 +120,13 @@ const listarPacientes = () => {
 
     contenedorCitasHtml.appendChild(divCita);
   });
+}
+
+// Limpiar HTML
+const limpiarHTML = () => {
+  while (contenedorCitasHtml.firstChild) {
+    contenedorCitasHtml.removeChild(contenedorCitasHtml.firstChild);
+  }
 }
 
 export {
