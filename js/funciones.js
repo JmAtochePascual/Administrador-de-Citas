@@ -1,5 +1,5 @@
 import { pacientes } from "./app.js";
-import { contenedorCitasHtml, formularioHtml } from "./selectores.js";
+import { contenedorCitasHtml, emailInputHtml, fechaInputHtml, formularioHtml, pacienteInputHtml, propietarioInputHtml, sintomasInputHtml } from "./selectores.js";
 
 // Variables
 const pacienteObj = {
@@ -94,10 +94,12 @@ const listarPacientes = () => {
     sintomasHtml.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
     sintomasHtml.innerHTML = `<span class="font-bold uppercase">Síntomas: </span> ${sintomas}`;
 
-    // const btnEditar = document.createElement('button');
-    // btnEditar.classList.add('py-2', 'px-10', 'bg-indigo-600', 'hover:bg-indigo-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
-    // btnEditar.innerHTML = 'Editar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>';
-    // btnEditar.onclick = () => editarCita(cita);
+    const btnEditar = document.createElement('button');
+    btnEditar.classList.add('py-2', 'px-10', 'bg-indigo-600', 'hover:bg-indigo-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
+    btnEditar.innerHTML = 'Editar <svg fill="none" class="h-5 w-5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>';
+    btnEditar.onclick = () => {
+      llenarFormulario(objetoPaciente);
+    };
 
     const btnEliminar = document.createElement('button');
     btnEliminar.classList.add('py-2', 'px-10', 'bg-red-600', 'hover:bg-red-700', 'text-white', 'font-bold', 'uppercase', 'rounded-lg', 'flex', 'items-center', 'gap-2');
@@ -110,7 +112,7 @@ const listarPacientes = () => {
     const contenedorBotoes = document.createElement('div');
     contenedorBotoes.classList.add('flex', 'justify-between', 'mt-10');
 
-    // contenedorBotoes.appendChild(btnEditar);
+    contenedorBotoes.appendChild(btnEditar);
     contenedorBotoes.appendChild(btnEliminar);
 
     // Agregar al HTML
@@ -123,6 +125,28 @@ const listarPacientes = () => {
 
     contenedorCitasHtml.appendChild(divCita);
   });
+}
+
+// Llenar formulario para edicion
+const llenarFormulario = (objetoPaciente) => {
+  const { paciente, propietario, email, fecha, sintomas, id } = objetoPaciente;
+
+  // Llenar objeto paciente
+  pacienteObj.paciente = paciente;
+  pacienteObj.propietario = propietario;
+  pacienteObj.email = email;
+  pacienteObj.fecha = fecha;
+  pacienteObj.sintomas = sintomas;
+  pacienteObj.id = id;
+
+  // Llenar inputs
+  pacienteInputHtml.value = paciente;
+  propietarioInputHtml.value = propietario;
+  emailInputHtml.value = email;
+  fechaInputHtml.value = fecha;
+  sintomasInputHtml.value = sintomas;
+
+  formularioHtml.querySelector('input[type="submit"]').value = 'Guardar Cambios';
 }
 
 // Limpiar HTML
